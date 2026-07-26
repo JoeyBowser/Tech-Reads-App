@@ -56,3 +56,26 @@ npm run build  # type-checks and builds both workspaces
 client/   React + Vite frontend
 server/   Express API — RSS aggregation, caching, and the summary endpoint
 ```
+
+## Deploy
+
+This repo includes a `render.yaml` Blueprint that provisions both services on
+[Render](https://render.com) in one step:
+
+1. Push to GitHub (already done if you're reading this from the repo).
+2. On Render: **New → Blueprint**, connect this repo.
+3. Render reads `render.yaml` and creates two services — a static site for the
+   client and a Node web service for the server. When prompted, paste your
+   `ANTHROPIC_API_KEY` (it's marked `sync: false` in the blueprint, so it's
+   never stored in the repo — Render only asks for it at blueprint-creation
+   time).
+4. Once both services are live, the client's `VITE_API_URL` env var is
+   pre-set to `https://tech-reads-server.onrender.com`. If Render assigned
+   the server a different subdomain (e.g. the name was taken), update that
+   env var on the client service and redeploy it.
+
+To point a custom domain at it afterward: add the domain under the client
+service's **Settings → Custom Domains** in Render, then add the DNS record
+Render gives you at your domain's DNS provider (a CNAME for a subdomain is
+simplest; a root/apex domain needs an ALIAS/ANAME record if your DNS
+provider supports one).
