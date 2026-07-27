@@ -2,7 +2,10 @@ import Parser from "rss-parser";
 import { FEEDS, type FeedConfig } from "./feeds.js";
 import type { Story } from "./types.js";
 
-const parser = new Parser();
+// rss-parser defaults to a 60s HTTP timeout; since all feeds are fetched
+// concurrently and awaited together, one slow/unresponsive feed could
+// otherwise stall the entire story list for up to a minute.
+const parser = new Parser({ timeout: 8000 });
 
 function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
