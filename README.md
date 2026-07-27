@@ -1,8 +1,9 @@
 # Tech Reads
 
 A daily tech news reader. Load up, pick from a handful of today's top stories pulled from
-curated RSS feeds, and get a real AI-generated summary on demand — with the option to jump
-to the original source when you want the full article.
+curated RSS feeds — with the option to jump to the original source when you want the full article.
+
+**Live demo:** [techreads.joeybowser.com](https://techreads.joeybowser.com)
 
 |                        Light                        |                        Dark                        |
 | :---------------------------------------------------: | :---------------------------------------------------: |
@@ -12,9 +13,10 @@ to the original source when you want the full article.
 
 - **Curated tech feed** — RSS from TechCrunch, The Verge, Ars Technica, Wired, Engadget, and
   Hacker News, deduped and cached server-side.
-- **Real summaries, on demand** — opening a story fetches the full article, generates a
-  3–5 sentence summary with Claude, and caches it — nothing is summarized until you actually
-  ask for it, so cost stays proportional to real usage.
+- **AI summaries, on demand** *(needs an Anthropic API key)* — opening a story can fetch the
+  full article and generate a 3–5 sentence summary with Claude, cached so it only runs once
+  per story. Without a key configured, it falls back to the short RSS description — which is
+  how the live demo currently runs.
 - **Story count + refresh** — pick 5–12 stories at a time; changing the count reveals more of
   the same set instead of reshuffling, and a Refresh button gets you a fresh batch on demand.
 - **Save for later** — bookmark a story and it's still there under the Saved tab even after
